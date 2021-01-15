@@ -9,8 +9,26 @@ class ChatForm extends React.Component {
 		};
 	}
 
+	handleChange(e) {
+		this.setState({ message: e.target.value });
+	}
+
+	handleSubmit(e) {
+		e.preventDefault();
+		console.log(this.state.message);
+	}
+
 	render() {
-		return <div>Input box</div>;
+		return (
+			<form className="chatform" onSubmit={this.handleSubmit.bind(this)}>
+				<input
+					type="text"
+					onChange={this.handleChange.bind(this)}
+					placeholder="Type a message..."
+				/>
+				<input type="submit" value="Send" />
+			</form>
+		);
 	}
 }
 

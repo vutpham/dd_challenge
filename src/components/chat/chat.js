@@ -17,7 +17,7 @@ class Chat extends React.Component {
 	render() {
 		const { currentUser, date } = this.props;
 		return (
-			<div>
+			<div className="chat-container">
 				<ChatRoomsList
 					name={currentUser}
 					date={date}

@@ -9,11 +9,11 @@ class ChatRoomMessages extends React.Component {
 		}
 
 		return (
-			<div>
+			<div className="chatroom-messages">
 				{messages.map(({ name, message, id }, i) => (
 					<ChatBubble
 						key={id}
-						idx={i}
+						hidden={messages[i - 1] && messages[i - 1].name === name}
 						name={name}
 						message={message}
 						isCurrentUser={currentUser === name}

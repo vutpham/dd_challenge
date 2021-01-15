@@ -3,14 +3,14 @@ import Moment from "react-moment";
 
 const UserInfo = ({ name, date }) => {
 	return (
-		<div>
-			<h3>{name}</h3>
-			<h4>
+		<div className="user-info">
+			<div className="current-user">{name}</div>
+			<div className="moment-online">
 				Online for{" "}
 				<Moment fromNow ago>
 					{date}
 				</Moment>
-			</h4>
+			</div>
 		</div>
 	);
 };

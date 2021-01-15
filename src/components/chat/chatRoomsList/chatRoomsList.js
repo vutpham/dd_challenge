@@ -36,7 +36,7 @@ class ChatRoomsList extends React.Component {
 	render() {
 		const { name, date } = this.props;
 		return (
-			<div>
+			<div className="chatrooms-list">
 				<UserInfo name={name} date={date} />
 				{this.displayChatrooms()}
 			</div>

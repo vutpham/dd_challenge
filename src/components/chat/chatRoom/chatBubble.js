@@ -1,8 +1,8 @@
-const ChatBubble = ({ idx, name, message, isCurrentUser }) => {
+const ChatBubble = ({ hidden, name, message, isCurrentUser }) => {
 	return (
-		<div>
-			<h3>{name}</h3>
-			<h4>{message}</h4>
+		<div className="chat-bubble">
+			{!hidden && <div className="sender-name">{name}</div>}
+			<div className={`message ${isCurrentUser ? "owner" : ""}`}>{message}</div>
 		</div>
 	);
 };

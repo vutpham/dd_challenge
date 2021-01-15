@@ -1,8 +1,17 @@
-const ChatRoomHeader = ({ name, users }) => {
+const ChatRoomHeader = ({ name, users, currentUser }) => {
+	const formattedUsers = users.map((user) => {
+		return user === currentUser
+			? `<span class="active-user">${user}</span>`
+			: user;
+	});
+
 	return (
-		<div>
-			<h2>{name}</h2>
-			<h3>{users.join(", ")}</h3>
+		<div className="chatroom-header">
+			<div className="chatroom-name">{name}</div>
+			<div
+				className="chatroom-users"
+				dangerouslySetInnerHTML={{ __html: formattedUsers.join(", ") }}
+			/>
 		</div>
 	);
 };

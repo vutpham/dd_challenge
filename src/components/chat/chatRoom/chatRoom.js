@@ -27,13 +27,11 @@ class ChatRoom extends React.Component {
 
 	render() {
 		const { name, users, messages } = this.state;
+		const { currentUser } = this.props;
 		return (
-			<div>
-				<ChatRoomHeader name={name} users={users} />
-				<ChatRoomMessages
-					currentUser={this.props.currentUser}
-					messages={messages}
-				/>
+			<div className="chatroom-container">
+				<ChatRoomHeader name={name} users={users} currentUser={currentUser} />
+				<ChatRoomMessages currentUser={currentUser} messages={messages} />
 				<ChatForm />
 			</div>
 		);
