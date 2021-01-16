@@ -27,7 +27,7 @@ body,
 }
 
 .chatrooms-list {
-	background-color: rgb(255, 8, 28);
+	background-color: rgb(255, 25, 64);
 	display: flex;
 	flex-direction: column;
 	width: 20%;
@@ -39,7 +39,7 @@ body,
 }
 
 .active-user {
-	color: rgb(156, 22, 22);
+	color: rgb(255, 25, 64);
 	font-weight: 500;
 }
 
@@ -64,7 +64,7 @@ body,
 }
 
 .selected {
-	background-color: rgb(156, 22, 22);
+	background-color: rgb(128, 13, 32);
 }
 
 .chatroom-container {
@@ -84,7 +84,7 @@ body,
 }
 
 .chatroom-messages {
-	background-color: rgb(241, 241, 241);
+	background-color: rgb(239, 241, 242);
 	border-bottom: 1.5px solid silver;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -130,7 +130,7 @@ body,
 
 .owner {
 	align-self: flex-end;
-	background: red;
+	background: rgb(255, 25, 64);
 	color: white;
 }
 

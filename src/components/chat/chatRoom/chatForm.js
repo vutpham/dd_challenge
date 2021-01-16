@@ -15,7 +15,9 @@ class ChatForm extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		console.log(this.state.message);
+		this.props.sendMessage(this.state.message);
+		e.target.reset();
+		this.setState({ message: "" });
 	}
 
 	render() {
@@ -26,7 +28,11 @@ class ChatForm extends React.Component {
 					onChange={this.handleChange.bind(this)}
 					placeholder="Type a message..."
 				/>
-				<input type="submit" value="Send" />
+				<input
+					disabled={this.state.message === ""}
+					type="submit"
+					value="Send"
+				/>
 			</form>
 		);
 	}

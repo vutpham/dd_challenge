@@ -2,6 +2,23 @@ import React from "react";
 import ChatBubble from "./chatBubble";
 
 class ChatRoomMessages extends React.Component {
+	constructor(props) {
+		super(props);
+		this.messagesEndRef = React.createRef();
+		this.scrollToBottom = this.scrollToBottom.bind(this);
+	}
+
+	componentDidUpdate(prevProps) {
+		if (prevProps.messages.length === this.props.messages.length - 1) {
+			this.scrollToBottom();
+		}
+	}
+	scrollToBottom() {
+		if (this.messagesEndRef.current !== null) {
+			this.messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+		}
+	}
+
 	render() {
 		const { currentUser, messages } = this.props;
 		if (messages.length === 0) {
@@ -19,6 +36,7 @@ class ChatRoomMessages extends React.Component {
 						isCurrentUser={currentUser === name}
 					/>
 				))}
+				<div ref={this.messagesEndRef} />
 			</div>
 		);
 	}
