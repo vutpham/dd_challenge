@@ -134,6 +134,9 @@ body,
 
 .owner {
 	align-self: flex-end;
+}
+
+.message.owner {
 	background: rgb(255, 25, 64);
 	color: white;
 }
