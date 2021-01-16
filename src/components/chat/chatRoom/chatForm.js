@@ -24,11 +24,13 @@ class ChatForm extends React.Component {
 		return (
 			<form className="chatform" onSubmit={this.handleSubmit.bind(this)}>
 				<input
+					className="chatInput"
 					type="text"
 					onChange={this.handleChange.bind(this)}
 					placeholder="Type a message..."
 				/>
 				<input
+					className="chatSubmit"
 					disabled={this.state.message === ""}
 					type="submit"
 					value="Send"

@@ -21,9 +21,6 @@ class ChatRoomMessages extends React.Component {
 
 	render() {
 		const { currentUser, messages } = this.props;
-		if (messages.length === 0) {
-			return <div>No Messages :(</div>;
-		}
 
 		return (
 			<div className="chatroom-messages">
