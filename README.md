@@ -28,3 +28,9 @@ Slight modification was made to the `server.js` file (lines 152-173) in order to
 ### Autoscrolling
 
 The `ChatMessages` component will render a scrollbar when the list of messages become taller than the set component height. After the scrollbar appears, new messages will automatically scroll the user to the bottom of the chat.
+
+## Potential Improvements
+
+One thing that I would to do improve this project would be to add PropType validations to the components to help future engineers have a better experience continuing work in this repo. Right now, it would take time for someone to read through the code and understand what a `message` object looks like. Having PropType validations should help.
+
+Currently, I am using a mix of class-based components and function-based components. Switching over to React Hooks would allow the project to be more consistent and have only functional components.
