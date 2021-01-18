@@ -1,7 +1,11 @@
 import React from "react";
+import socketIOClient from "socket.io-client";
 import ChatRoomHeader from "./chatRoomHeader";
 import ChatRoomMessages from "./chatRoomMessages";
 import ChatForm from "./chatForm";
+
+const ENDPOINT = "http://localhost:8080";
+const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
 
 class ChatRoom extends React.Component {
 	constructor(props) {
@@ -12,21 +16,38 @@ class ChatRoom extends React.Component {
 			messages: [],
 		};
 
-		this.fetchData = this.fetchData.bind(this);
-		this.sendMessage = this.sendMessage.bind(this);
-	}
-
-	componentDidMount() {
-		this.fetchData();
+		this.socket = null;
 	}
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.chatRoomId !== this.props.chatRoomId) {
 			this.fetchData();
+			this.createSocket();
 		}
 	}
 
-	fetchData() {
+	createSocket = () => {
+		if (this.socket) {
+			this.socket.disconnect();
+		}
+
+		this.socket = socketIOClient(ENDPOINT, {
+			query: { roomId: this.props.chatRoomId },
+		});
+
+		// Listens for incoming messages
+		this.socket.on(NEW_CHAT_MESSAGE_EVENT, (message) => {
+			this.setState((state) => {
+				const messages = state.messages.concat(message);
+				if (!state.users.includes(message.name)) {
+					return { messages, users: state.users.concat(message.name) };
+				}
+				return { messages };
+			});
+		});
+	};
+
+	fetchData = () => {
 		if (this.props.chatRoomId === null) return;
 		fetch(`http://localhost:8080/api/rooms/${this.props.chatRoomId}`)
 			.then((resp) => resp.json())
@@ -35,9 +56,9 @@ class ChatRoom extends React.Component {
 		fetch(`http://localhost:8080/api/rooms/${this.props.chatRoomId}/messages`)
 			.then((resp) => resp.json())
 			.then((data) => this.setState({ messages: data }));
-	}
+	};
 
-	sendMessage(message) {
+	sendMessage = (message) => {
 		if (message === "") return;
 		const { currentUser, chatRoomId } = this.props;
 		const requestOptions = {
@@ -54,15 +75,9 @@ class ChatRoom extends React.Component {
 				return resp.json();
 			})
 			.then((data) => {
-				this.setState((state) => {
-					const messages = state.messages.concat(data);
-					if (!state.users.includes(currentUser)) {
-						return { messages, users: state.users.concat(currentUser) };
-					}
-					return { messages };
-				});
+				this.socket.emit(NEW_CHAT_MESSAGE_EVENT, data);
 			});
-	}
+	};
 
 	render() {
 		const { name, users, messages } = this.state;
