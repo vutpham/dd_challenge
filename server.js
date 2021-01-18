@@ -154,27 +154,13 @@ app.use("/api", router);
 const server = http.createServer(app);
 
 const io = socketIo(server, { cors: { origin: "*" } });
-
-// let interval;
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
 
 io.on("connection", (socket) => {
-	console.log("New client connected");
-	// if (interval) {
-	// 	clearInterval(interval);
-	// }
-	// interval = setInterval(() => getApiAndEmit(socket), 1000);
-	// socket.on("disconnect", () => {
-	// 	console.log("Client disconnected");
-	// 	clearInterval(interval);
-	// });
-
 	const { roomId } = socket.handshake.query;
 	if (roomId !== null && roomId !== undefined) {
 		socket.join(roomId);
-		console.log(`Joining room ${roomId}`);
 		socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
-			console.log("RECEIVING A MESSAGE!!!!");
 			io.in(roomId).emit(NEW_CHAT_MESSAGE_EVENT, data);
 		});
 
@@ -183,11 +169,5 @@ io.on("connection", (socket) => {
 		});
 	}
 });
-
-const getApiAndEmit = (socket) => {
-	const response = new Date();
-	// Emitting a new message. Will be consumed by the client
-	socket.emit("FromAPI", response);
-};
 
 server.listen(port, () => console.log(`API running at localhost:${port}/api`));
