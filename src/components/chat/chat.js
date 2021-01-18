@@ -9,12 +9,6 @@ class Chat extends React.Component {
 		this.selectChatroom = this.selectChatroom.bind(this);
 	}
 
-	componentDidMount() {
-		console.log("first windowCurrentUser", window.currentUser);
-		delete window.currentUser;
-		console.log("deleted windowCurrentUser", window.currentUser);
-	}
-
 	selectChatroom(id) {
 		if (this.state.selected === id) return;
 		this.setState({ selected: id });

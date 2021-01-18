@@ -56,6 +56,9 @@ class ChatRoom extends React.Component {
 			.then((data) => {
 				this.setState((state) => {
 					const messages = state.messages.concat(data);
+					if (!state.users.includes(currentUser)) {
+						return { messages, users: state.users.concat(currentUser) };
+					}
 					return { messages };
 				});
 			});
