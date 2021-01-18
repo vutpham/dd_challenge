@@ -1,8 +1,19 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("App", () => {
+	beforeEach(() => {
+		Object.defineProperty(window, "sessionStorage", {
+			value: {
+				getItem: jest.fn(() => null),
+				setItem: jest.fn(() => null),
+			},
+			writeable: true,
+		});
+	});
+
+	it("should call sessionStorage getItem on render", () => {
+		render(<App />);
+		expect(window.sessionStorage.getItem).toHaveBeenCalledTimes(2);
+	});
 });

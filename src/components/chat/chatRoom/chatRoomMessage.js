@@ -1,4 +1,4 @@
-const ChatBubble = ({ hidden, name, message, isCurrentUser }) => {
+const ChatRoomMessage = ({ hidden, name, message, isCurrentUser }) => {
 	return (
 		<div className="chat-bubble">
 			{!hidden && <div className="sender-name">{name}</div>}
@@ -7,4 +7,4 @@ const ChatBubble = ({ hidden, name, message, isCurrentUser }) => {
 	);
 };
 
-export default ChatBubble;
+export default ChatRoomMessage;
