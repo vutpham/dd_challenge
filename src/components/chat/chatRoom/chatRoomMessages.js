@@ -1,5 +1,5 @@
 import React from "react";
-import ChatBubble from "./chatBubble";
+import ChatRoomMessage from "./chatRoomMessage";
 
 class ChatRoomMessages extends React.Component {
 	constructor(props) {
@@ -25,7 +25,7 @@ class ChatRoomMessages extends React.Component {
 		return (
 			<div className="chatroom-messages">
 				{messages.map(({ name, message, id }, i) => (
-					<ChatBubble
+					<ChatRoomMessage
 						key={id}
 						hidden={messages[i - 1] && messages[i - 1].name === name}
 						name={name}
