@@ -16,22 +16,22 @@ class ChatRoomsList extends React.Component {
 
 	componentDidUpdate(prevProps) {
 		const { selectChatroom } = this.props;
-		if (prevProps.selected === null && this.state.rooms.length > 0) {
+		if (prevProps.currentRoomId === null && this.state.rooms.length > 0) {
 			selectChatroom(0);
 		}
 	}
 
-	displayChatrooms() {
-		const { selected, selectChatroom } = this.props;
+	displayChatrooms = () => {
+		const { currentRoomId, selectChatroom } = this.props;
 		return this.state.rooms.map(({ name, id }) => (
 			<ChatRoomsListItem
 				key={id}
 				name={name}
 				selectChatroom={() => selectChatroom(id)}
-				isSelected={id === selected}
+				isSelected={id === currentRoomId}
 			/>
 		));
-	}
+	};
 
 	render() {
 		const { name, date } = this.props;

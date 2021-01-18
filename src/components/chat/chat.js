@@ -5,14 +5,13 @@ import ChatRoom from "./chatRoom/chatRoom";
 class Chat extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { selected: null };
-		this.selectChatroom = this.selectChatroom.bind(this);
+		this.state = { currentRoomId: null };
 	}
 
-	selectChatroom(id) {
-		if (this.state.selected === id) return;
-		this.setState({ selected: id });
-	}
+	selectChatroom = (id) => {
+		if (this.state.currentRoomId === id) return;
+		this.setState({ currentRoomId: id });
+	};
 
 	render() {
 		const { currentUser, date } = this.props;
@@ -21,10 +20,13 @@ class Chat extends React.Component {
 				<ChatRoomsList
 					name={currentUser}
 					date={date}
-					selected={this.state.selected}
+					currentRoomId={this.state.currentRoomId}
 					selectChatroom={this.selectChatroom}
 				/>
-				<ChatRoom currentUser={currentUser} chatRoomId={this.state.selected} />
+				<ChatRoom
+					currentUser={currentUser}
+					chatRoomId={this.state.currentRoomId}
+				/>
 			</div>
 		);
 	}

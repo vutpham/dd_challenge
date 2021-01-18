@@ -5,19 +5,21 @@ class ChatRoomMessages extends React.Component {
 	constructor(props) {
 		super(props);
 		this.messagesEndRef = React.createRef();
-		this.scrollToBottom = this.scrollToBottom.bind(this);
 	}
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.messages.length === this.props.messages.length - 1) {
+			this.scrollToBottom({ behavior: "smooth" });
+		} else {
 			this.scrollToBottom();
 		}
 	}
-	scrollToBottom() {
+
+	scrollToBottom = (prop) => {
 		if (this.messagesEndRef.current !== null) {
-			this.messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+			this.messagesEndRef.current.scrollIntoView(prop);
 		}
-	}
+	};
 
 	render() {
 		const { currentUser, messages } = this.props;

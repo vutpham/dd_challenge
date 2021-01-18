@@ -6,20 +6,17 @@ class LoginForm extends React.Component {
 		this.state = {
 			name: "",
 		};
-
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleInput = this.handleInput.bind(this);
 	}
 
-	handleInput(e) {
+	handleInput = (e) => {
 		this.setState({ name: e.target.value });
-	}
+	};
 
-	handleSubmit(e) {
+	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.handleLogin({ name: this.state.name, loginTime: new Date() });
 		e.target.reset();
-	}
+	};
 
 	render() {
 		return (
