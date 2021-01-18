@@ -49,4 +49,4 @@ Lastly, it could be frustrating to always scroll to the bottom when a new messag
 
 ### Testing-Library (React)
 
-More tests need to be added and testing can always be improved.
+More tests need to be added and you can never go wrong with more tests! :)
