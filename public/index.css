@@ -30,7 +30,7 @@ body,
 	background-color: rgb(255, 25, 64);
 	display: flex;
 	flex-direction: column;
-	width: 20%;
+	min-width: 208px;
 }
 
 .user-info {
@@ -68,7 +68,8 @@ body,
 }
 
 .chatroom-container {
-	width: 80%;
+	width: 100%;
+	min-width: 288px;
 	height: 100%;
 }
 
@@ -187,4 +188,10 @@ body,
 	border-radius: 3px;
 	color: white;
 	padding: 7px 10px;
+}
+
+input[disabled],
+input[disabled]:hover {
+	opacity: 0.65;
+	cursor: not-allowed;
 }

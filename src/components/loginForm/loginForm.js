@@ -17,10 +17,6 @@ class LoginForm extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		if (this.state.name === "") {
-			alert("Please enter your username to continue");
-			return;
-		}
 		this.props.handleLogin({ name: this.state.name, loginTime: new Date() });
 		e.target.reset();
 	}
@@ -35,6 +31,7 @@ class LoginForm extends React.Component {
 					onChange={this.handleInput}
 				/>
 				<input
+					disabled={this.state.name === ""}
 					className="loginSubmit"
 					type="submit"
 					value="Join the DoorDash Chat!"

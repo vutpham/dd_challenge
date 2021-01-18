@@ -13,11 +13,14 @@ class App extends React.Component {
 
 	handleLogin = (info) => {
 		const { name, loginTime } = info;
+		sessionStorage.setItem("name", name);
+		sessionStorage.setItem("loginTime", loginTime);
 		this.setState({ name, loginTime });
 	};
 
 	render() {
-		const { name, loginTime } = this.state;
+		const name = sessionStorage.getItem("name");
+		const loginTime = sessionStorage.getItem("loginTime");
 		const loggedIn = name !== null && loginTime !== null;
 		return (
 			<div className="App">
