@@ -1,6 +1,6 @@
 ## DD Coding Challenge
 
-![image](./public/images/dd_chat.png)
+![image](./public/images/dd_chat.gif)
 
 This is a chat app built using ReactJS with a provided Node server. It utilizes `Socket.IO` for real-time updates in different browser tabs.
 
@@ -34,3 +34,7 @@ The `ChatMessages` component will render a scrollbar when the list of messages b
 One thing that I would to do improve this project would be to add PropType validations to the components to help future engineers have a better experience continuing work on this app. Right now, it is not very clear what prop types are getting passed inside of components, but having PropType validations should give it more clarity.
 
 Currently, I am using a mix of class-based components and function-based components. Switching over to React Hooks would allow the project to be more consistent and have only functional components and improve readability.
+
+Instead of having the user wait for their submitted messsages to come back from the backend API, I could also immediately add it to the chat upon submission in order to optimize the UX. Doing this would make the chat seem more "snappy" and seamless, but I would have to catch the error in case the API fails.
+
+Lastly, it could be frustrating to always scroll to the bottom when a new message is received--especially I'm trying to look for something and have gone up around 500 messages. One potential improvement would be to disable `scrollToBottom` if the user has more than 300px from the bottom of the chat.
